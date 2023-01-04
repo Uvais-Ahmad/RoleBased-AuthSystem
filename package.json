@@ -1,0 +1,15 @@
+{
+  "name": "rolebased_auth",
+  "version": "1.0.0",
+  "description": "We LogIn user as a role based (admin / employee )",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Uvais Ahmad (Ninjas )",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
