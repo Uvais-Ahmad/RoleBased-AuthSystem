@@ -1,0 +1,54 @@
+<header>
+    <nav class="navbar" style="background: linear-gradient(132deg, rgba(0,0,0,1) 0%, rgba(6,34,65,1) 100%);">
+
+            <a class="navbar-brand ms-3" href="/">RB Auth</a>
+            <ul class="navbar-nav d-flex flex-row me-4">
+
+              <!-- if user is logged in then show -->
+              <% if(locals.user){  %>
+
+                <li class="nav-item mx-4">
+                  <a class="nav-link" href="/" aria-current="page" ><%= locals.user.name %></a>
+                </li>
+
+                <% if(locals.user.isAdmin){ %>
+                  <li class="nav-item mx-4">
+                    <a class="nav-link" aria-current="page" href="/user/admin/assign-work" >Assign works</a>
+                  </li>
+
+                  <li class="nav-item mx-4">
+                    <a class="nav-link" aria-current="page" href="/user/admin/allEmployee">Employees</a>
+                  </li>
+
+                  <li class="nav-item mx-4">
+                    <a class="nav-link" aria-current="page" href="/user/register" >Add Employee</a>
+                  </li>
+                <% } %> 
+
+                <li class="nav-item mx-4">
+                  <a class="nav-link" href="/user/logout">Log out</a>
+                </li>
+              
+              <!-- if user not signed in -->
+              <% } else{ %>
+                <li class="nav-item mx-4">
+                  <a class="nav-link" aria-current="page" href="/user/login">Log In</a>
+                </li>
+                <li class="nav-item mx-4">
+                  <a class="nav-link" href="/user/register">Register</a>
+                </li>
+
+              <% } %> 
+                
+                <li class="nav-item mx-4">
+                  <a class="nav-link" style="cursor: pointer;" onclick="about()">About</a>
+                </li>
+            </ul>
+    </nav>
+</header>
+
+<script type="text/javascript">
+  function about(){
+      alert('Developer : Uvais Ahmad (ninjas) &                                                        Its a Employee-Review-System application which works on ExpressJs and Store all Info in the MongoDB Database. its UI build in EJS (styling Bootstrap).');
+  }
+</script>
