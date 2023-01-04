@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const port = 8000;
-
+const dotenv = require('dotenv').config();
+const db = require('./config/mongoose');
 app.use('/',require('./router'));
 app.listen(port , (err)=>{
     if(err){
