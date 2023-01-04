@@ -15,8 +15,8 @@ app.set('views',path.join(__dirname,'views'));
 // Express Ejs layouts setup
 app.use(expressLayout);
 
-app.set('layouts extractStyles',true);
-app.set("layouts extractScripts", true)
+app.set('layout extractStyles',true);
+app.set("layout extractScripts", true)
 
 app.use('/',require('./router'));
 app.listen(port , (err)=>{
