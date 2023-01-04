@@ -1,3 +1,3 @@
-module.exports.index = ( req , res )=>{
-    return res.send('<h1>Hello I am from Recovero');
+module.exports.home = ( req , res )=>{
+    return res.render('home');
 }
