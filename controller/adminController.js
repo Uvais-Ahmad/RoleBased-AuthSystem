@@ -27,3 +27,15 @@ module.exports.allMember = function( req , res ){
         }
     })
 }
+
+
+module.exports.deleteMember = function( req , res ){
+    let id = req.params.id;
+    if(!req.user.isAdmin){return res.redirect('/');}
+    User.findByIdAndRemove(id , function( err , user ){
+        if(err){ console.log('Error occur while updating'); return; }
+
+        console.log('User deleted : ',user);
+        return res.redirect('back');
+    })
+}

@@ -11,7 +11,7 @@ router.get('/biling');
 
 router.get('/allMember',authenticateToken,adminCont.allMember);
 
-router.get('/delete-member')
+router.get('/deleteMember/:id',authenticateToken,adminCont.deleteMember);
 
 
 module.exports = router;
