@@ -1,6 +1,15 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const jwt = require('jsonwebtoken');
+
+// Homepage
+module.exports.home = function( req , res ){
+    return res.render('_home',{
+        title:"Home RB Auth"
+    })
+}
+
 
 module.exports.login = function( req , res ){
     res.render('_logIn',{
@@ -64,4 +73,64 @@ module.exports.register = async function(req , res ){
         //     message : "Error while register user"
         // })
     }     
+}
+
+
+//SecretOrkey : uvaisDeveloper
+
+
+module.exports.createSession = async function( req , res ){
+    try{
+        let data = req.body;
+        //find via email
+        
+        let user = await User.findOne({email : data.email});
+        
+        let isMatch;
+        if(user ){
+            isMatch = await bcrypt.compare(data.pass , user.password);
+        }
+        
+        if( !user || !isMatch){
+            // return res.status(401).json({
+            //     message : "Invalid username and password"
+                
+            // })
+            return res.redirect('back');
+        }
+
+        let token =await jwt.sign(user.toJSON() , 'uvaisDeveloper' , {expiresIn : '100000000'} );
+
+        
+        // user is found
+        console.log("LogggedInUser ",user);
+        return res.cookie("access_token",token).redirect('/');
+
+        // return res.cookie("access_token",token).status(200).json({
+        //     message : "SignIn successfull",
+        //     data : {
+        //         //here we generate the token using encrpt key "codeial"
+        //         access_token : token 
+        //     }
+        // })
+    }
+    catch( err ){
+        console.log("Error while logIn : ",err);
+        // return res.status(400).json({
+        //     message : "Error while login"
+        // })
+
+        return res.redirect('back');
+    }
+}   
+
+
+module.exports.logOut = function(req , res ){
+
+    // let access_token = req.cookies.access_token;
+
+    // return res.clearCookie("access_token").status(200).json({
+    //     message : "logOut successfully"
+    // })
+    return res.clearCookie("access_token").redirect('/logIn');
 }
