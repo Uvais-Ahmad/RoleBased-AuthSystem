@@ -18,18 +18,6 @@ module.exports.login = function( req , res ){
 }
 
 
-module.exports.signUp = function( req , res ){
-    //if requested user is not admin we cant show signUp page
-    if(!req.user.isAdmin){
-        return res.redirect('back');
-    }
-
-    res.render('_signUp',{
-        title : 'Sign Up'
-    })
-}
-
-
 // Create a new account in DB while signUp
  
 module.exports.register = async function(req , res ){
