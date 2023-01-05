@@ -7,7 +7,7 @@ const authenticateToken = require('../config/middleware');
 
 router.get('/signup',authenticateToken ,adminCont.signUp);
 
-router.get('/biling');
+router.get('/biling',authenticateToken,adminCont.biling);
 
 router.get('/allMember',authenticateToken,adminCont.allMember);
 

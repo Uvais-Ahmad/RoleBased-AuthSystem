@@ -39,3 +39,9 @@ module.exports.deleteMember = function( req , res ){
         return res.redirect('back');
     })
 }
+
+module.exports.biling = function( req , res ){
+    return res.render('_biling',{
+        title : "Biling"
+    })
+}

@@ -127,3 +127,9 @@ module.exports.logOut = function(req , res ){
     // })
     return res.clearCookie("access_token").redirect('/logIn');
 }
+
+module.exports.dashboard = function( req , res ){
+    return res.render('_dashboard',{
+        title : "Dashboard"
+    })
+}
