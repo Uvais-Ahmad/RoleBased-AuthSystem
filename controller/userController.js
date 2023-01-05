@@ -19,6 +19,11 @@ module.exports.login = function( req , res ){
 
 
 module.exports.signUp = function( req , res ){
+    //if requested user is not admin we cant show signUp page
+    if(!req.user.isAdmin){
+        return res.redirect('back');
+    }
+
     res.render('_signUp',{
         title : 'Sign Up'
     })
@@ -57,7 +62,7 @@ module.exports.register = async function(req , res ){
             //create User and store hash password
             let user = await User.create({name :data.name , email : data.email ,password : hash });
             console.log("User created ",user);
-            return res.redirect('back');
+            return res.redirect('/');
             // return res.status(200).json({
             //     message : "Successfully Account created",
             //     data : {
@@ -101,7 +106,7 @@ module.exports.createSession = async function( req , res ){
 
         let token =await jwt.sign(user.toJSON() , 'uvaisDeveloper' , {expiresIn : '100000000'} );
 
-        
+        res.locals.user = user;
         // user is found
         console.log("LogggedInUser ",user);
         return res.cookie("access_token",token).redirect('/');
