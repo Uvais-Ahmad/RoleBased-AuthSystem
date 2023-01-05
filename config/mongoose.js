@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 
 // mongoose.connect(process.env.MONGODB_URL);
+mongoose.set("strictQuery", false);
 mongoose.connect('mongodb://localhost/RoleBased_Auth_Developer');
 console.log("mongoose connection");
 const db = mongoose.connection;
