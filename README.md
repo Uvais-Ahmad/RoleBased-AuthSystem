@@ -28,8 +28,6 @@
     1. Used Passport JWT for Authentication and Authorization.
     2. Used Wingston package for storing logs in a file.
   
-  
-## Setup on your machine.
 # How to setup the project on local system
   1. Clone this project
   2. Start by installing npm if you don't have it already.
@@ -47,7 +45,7 @@
   
 ## Important Link:
 
-- **Youtube Video URL**: https://youtu.be/rFiFMkTtBio
-- **Hosting Link**: https://emp-review-sys.onrender.com
+- **Youtube Video URL**: 
+- **Hosting Link**: 
 
 <br/>
