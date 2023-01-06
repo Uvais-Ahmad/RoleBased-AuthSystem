@@ -45,7 +45,6 @@
   
 ## Important Link:
 
-- **Youtube Video URL**: 
-- **Hosting Link**: 
+- **Hosting Link**: https://rb-auth.onrender.com/logIn
 
 <br/>
