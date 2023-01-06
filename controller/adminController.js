@@ -1,3 +1,4 @@
+const logger = require('../logger');
 const User = require('../models/user');
 
 module.exports.signUp = function( req , res ){
@@ -14,7 +15,7 @@ module.exports.signUp = function( req , res ){
 
 module.exports.allMember = function( req , res ){
     User.find( {} , function(err , users ){
-        if(err){ console.log('Error occur while finding employes');}
+        if(err){ logger.error('Error occur while finding employes');}
 
         if(req.user.isAdmin){
             return res.render('_allMember',{
@@ -33,9 +34,7 @@ module.exports.deleteMember = function( req , res ){
     let id = req.params.id;
     if(!req.user.isAdmin){return res.redirect('/');}
     User.findByIdAndRemove(id , function( err , user ){
-        if(err){ console.log('Error occur while updating'); return; }
-
-        console.log('User deleted : ',user);
+        if(err){ logger.error('Error occur while updating'); return; }
         return res.redirect('back');
     })
 }

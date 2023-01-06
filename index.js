@@ -9,6 +9,7 @@ const session = require('express-session');
 const passport = require('passport');
 const passportJwt = require('./config/passport-jwt');
 const cookieParser = require('cookie-parser');
+const logger = require('./logger');
 
 app.use(express.urlencoded({extended:true}));
 
@@ -26,21 +27,15 @@ app.use(expressLayout);
 app.set('layout extractStyles',true);
 app.set("layout extractScripts", true)
 
-// app.use( session({
-//     name :'RBAuth',secret:'uvaisDeveloper', 
-//     saveUninitialized : false , resave :false,
-//     cookie : {
-//         maxAge : (1000*60*100)
-//     }
-// }));
 
-// app.use(passport.session());
 app.use(passport.initialize());
 
 app.use('/',require('./router'));
 app.listen(port , (err)=>{
     if(err){
-        console.log(`Error while running the server on Port : ${port}`);
+        // console.log(`Error while running the server on Port : ${port}`);
+        logger.error(`Error while running the server on Port : ${port}`);
     }
-    console.log(`Server running on Port ${port}`);
+    // console.log(`Server running on Port ${port}`);
+    logger.info(`Server running on Port ${port}`);
 })
